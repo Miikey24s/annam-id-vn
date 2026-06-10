@@ -1,5 +1,6 @@
 services:
   app:
+    image: ghcr.io/miikey24s/annam-id-vn:latest
     build:
       context: ..
       dockerfile: docker/Dockerfile
