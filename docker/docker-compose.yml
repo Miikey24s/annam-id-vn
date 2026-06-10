@@ -5,39 +5,14 @@ services:
       dockerfile: docker/Dockerfile
     container_name: annam-app
     restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
     environment:
       - NODE_ENV=production
       - RESEND_API_KEY=${RESEND_API_KEY:-}
       - CONTACT_EMAIL=annamnguyen204@gmail.com
-    networks:
-      - annam-network
-    expose:
-      - "3000"
-
-  nginx:
-    image: nginx:alpine
-    container_name: annam-nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./certbot/conf:/etc/letsencrypt:ro
-      - ./certbot/www:/var/www/certbot:ro
-    depends_on:
-      - app
-    networks:
-      - annam-network
-
-  certbot:
-    image: certbot/certbot
-    container_name: annam-certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   annam-network:
     driver: bridge
+
