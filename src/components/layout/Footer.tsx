@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Mail, ExternalLink } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", key: "home" },

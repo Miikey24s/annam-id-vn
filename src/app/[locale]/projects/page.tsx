@@ -14,12 +14,6 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-  },
-};
 
 /* ------------------------------------------------------------------ */
 /*  Types & Data                                                       */
