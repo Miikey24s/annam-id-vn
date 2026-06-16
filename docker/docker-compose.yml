@@ -12,6 +12,30 @@ services:
       - NODE_ENV=production
       - RESEND_API_KEY=${RESEND_API_KEY:-}
       - CONTACT_EMAIL=annamnguyen204@gmail.com
+    networks:
+      - annam-network
+
+  paw-app:
+    image: ghcr.io/miikey24s/paw-annam-id-vn:latest
+    build:
+      context: ../paw-annam-id-vn
+      dockerfile: docker/Dockerfile
+    container_name: paw-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${PAW_DATABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_URL=${PAW_SUPABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${PAW_SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${PAW_SUPABASE_SERVICE_ROLE_KEY}
+      - NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${PAW_CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${PAW_CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${PAW_CLOUDINARY_API_SECRET}
+      - ADMIN_EMAIL=${PAW_ADMIN_EMAIL}
+    networks:
+      - annam-network
 
 networks:
   annam-network:

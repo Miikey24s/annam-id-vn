@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "title": "Paw | Pet Memories Keeper",
+    "description": "A place to keep memories, journals, milestones, and health logs of our journey raising our first cat."
+  },
+  "nav": {
+    "home": "Home",
+    "timeline": "Timeline",
+    "gallery": "Gallery",
+    "milestones": "Milestones",
+    "journal": "Journal",
+    "health": "Health",
+    "about": "About Us",
+    "admin": "Admin"
+  },
+  "hero": {
+    "greeting": "Hi! I am",
+    "age": "{months} months old",
+    "adoption": "Adoption Day: {date}",
+    "tagline": "The journey of caring and growing with our beloved cat 🐾",
+    "daysTogether": "Days Together",
+    "photos": "Photos Kept",
+    "completedMilestones": "Milestones Reached"
+  },
+  "timeline": {
+    "title": "Our Kitty's Timeline",
+    "subtitle": "A chronological story of growing up, captured moment by moment",
+    "filterAll": "All",
+    "filterDaily": "Daily Life",
+    "filterMilestone": "Milestones",
+    "filterFunny": "Funny",
+    "filterHealth": "Health",
+    "noEntries": "No timeline entries yet."
+  },
+  "gallery": {
+    "title": "Memory Gallery",
+    "subtitle": "Our cutest photos and video clips",
+    "all": "All Photos",
+    "favorites": "Favorites",
+    "noImages": "No images uploaded yet."
+  },
+  "milestones": {
+    "title": "Growing Milestones",
+    "subtitle": "Tracking the important 'first times' of our kitty",
+    "calculatorTitle": "Cat Age Calculator",
+    "calculatorDesc": "See how old your cat is compared to human years!",
+    "catAge": "Cat Age",
+    "humanAge": "Equivalent Human Age",
+    "years": "years",
+    "months": "months",
+    "weeks": "weeks",
+    "days": "days",
+    "categories": {
+      "first-time": "First Times 🐾",
+      "health": "Medical & Health 💉",
+      "growth": "Growing Up 📏",
+      "social": "Making Friends 👋",
+      "fun": "Playtime 🎉"
+    }
+  },
+  "journal": {
+    "title": "Cat Care Journal",
+    "subtitle": "Stories, experiences, and lessons learned along the journey of raising our kitty",
+    "readTime": "{minutes} min read",
+    "readMore": "Read more",
+    "noEntries": "No journal entries written yet.",
+    "searchPlaceholder": "Search journal..."
+  },
+  "health": {
+    "title": "Health Records",
+    "subtitle": "Track weight logs, vaccination timelines, and vet visits",
+    "weightChart": "Weight Chart (kg)",
+    "vaccination": "Vaccination Timeline",
+    "upcoming": "Upcoming Appointments",
+    "noRecords": "No health records found."
+  },
+  "about": {
+    "title": "Our Story",
+    "subtitle": "Why this website exists and our experience as first-time cat owners",
+    "petProfile": "Kitty's Profile",
+    "name": "Name",
+    "breed": "Breed",
+    "gender": "Gender",
+    "birthday": "Birthday",
+    "color": "Color",
+    "personality": "Personality",
+    "funFacts": "Fun Facts",
+    "credits": "Designed & Coded by {author}."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong. Please try again.",
+    "success": "Success!",
+    "save": "Save Changes",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add New",
+    "back": "Back",
+    "backToHome": "Back to Home",
+    "noData": "No data available."
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "login": "Admin Login",
+    "loginDesc": "Enter your email to receive a Magic Link login to the administration panel.",
+    "sendLink": "Send Magic Link",
+    "petInfo": "Pet Profile",
+    "manageJournal": "Manage Journal",
+    "manageGallery": "Manage Gallery",
+    "manageMilestones": "Manage Milestones",
+    "manageHealth": "Manage Health"
+  }
+}

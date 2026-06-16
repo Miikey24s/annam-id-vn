@@ -36,7 +36,7 @@ jobs:
             type=sha,prefix=
             type=raw,value=latest
 
-      - name: Build and push Docker image
+      - name: Build and push Main Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -44,6 +44,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build and push Paw Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./paw-annam-id-vn
+          file: ./paw-annam-id-vn/docker/Dockerfile
+          push: true
+          tags: ghcr.io/miikey24s/paw-annam-id-vn:latest
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.2.0
@@ -54,8 +62,9 @@ jobs:
           script: |
             cd /opt/annam-id-vn
             git pull origin master
-            docker compose -f docker/docker-compose.yml pull app
+            docker compose -f docker/docker-compose.yml pull
             docker compose -f docker/docker-compose.yml up -d --remove-orphans
+            docker exec annam-nginx nginx -s reload
             docker image prune -f
             echo "Deployment complete at $(date)"
 

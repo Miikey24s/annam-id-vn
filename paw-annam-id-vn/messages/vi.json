@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "title": "Paw | Kỷ niệm cùng Bé Mèo",
+    "description": "Nơi lưu giữ những khoảnh khắc, nhật ký, cột mốc và hồ sơ sức khỏe trong hành trình lần đầu nuôi mèo của chúng mình."
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "timeline": "Dòng thời gian",
+    "gallery": "Bộ sưu tập",
+    "milestones": "Cột mốc",
+    "journal": "Nhật ký",
+    "health": "Sức khỏe",
+    "about": "Về chúng mình",
+    "admin": "Quản lý"
+  },
+  "hero": {
+    "greeting": "Xin chào! Mình là",
+    "age": "{months} tháng tuổi",
+    "adoption": "Về nhà mới: {date}",
+    "tagline": "Hành trình chăm sóc và lớn khôn của bé mèo cưng 🐾",
+    "daysTogether": "Ngày bên nhau",
+    "photos": "Ảnh kỷ niệm",
+    "completedMilestones": "Cột mốc đã đạt"
+  },
+  "timeline": {
+    "title": "Dòng thời gian của bé",
+    "subtitle": "Hành trình khôn lớn được ghi lại qua từng khoảnh khắc",
+    "filterAll": "Tất cả",
+    "filterDaily": "Đời thường",
+    "filterMilestone": "Cột mốc",
+    "filterFunny": "Hài hước",
+    "filterHealth": "Sức khỏe",
+    "noEntries": "Chưa có câu chuyện nào trên dòng thời gian."
+  },
+  "gallery": {
+    "title": "Góc ảnh kỷ niệm",
+    "subtitle": "Những hình ảnh và video đáng yêu nhất",
+    "all": "Tất cả ảnh",
+    "favorites": "Yêu thích",
+    "noImages": "Chưa có hình ảnh nào được tải lên."
+  },
+  "milestones": {
+    "title": "Cột mốc lớn khôn",
+    "subtitle": "Theo dõi những 'lần đầu tiên' quan trọng của bé",
+    "calculatorTitle": "Máy tính tuổi mèo",
+    "calculatorDesc": "Xem tuổi của bé tương đương bao nhiêu tuổi ở con người nhé!",
+    "catAge": "Tuổi mèo",
+    "humanAge": "Tuổi người tương đương",
+    "years": "tuổi",
+    "months": "tháng",
+    "weeks": "tuần",
+    "days": "ngày",
+    "categories": {
+      "first-time": "Lần đầu tiên 🐾",
+      "health": "Y tế & Sức khỏe 💉",
+      "growth": "Sự lớn khôn 📏",
+      "social": "Làm quen 👋",
+      "fun": "Vui chơi 🎉"
+    }
+  },
+  "journal": {
+    "title": "Nhật ký nuôi mèo",
+    "subtitle": "Kể về những câu chuyện, trải nghiệm và bài học trong quá trình chăm sóc bé",
+    "readTime": "{minutes} phút đọc",
+    "readMore": "Đọc tiếp",
+    "noEntries": "Nhật ký chưa viết bài nào.",
+    "searchPlaceholder": "Tìm kiếm nhật ký..."
+  },
+  "health": {
+    "title": "Hồ sơ sức khỏe",
+    "subtitle": "Theo dõi cân nặng, lịch tiêm phòng và thăm khám bác sĩ thú y",
+    "weightChart": "Biểu đồ cân nặng (kg)",
+    "vaccination": "Lịch trình tiêm chủng",
+    "upcoming": "Lịch hẹn sắp tới",
+    "noRecords": "Chưa có hồ sơ sức khỏe nào."
+  },
+  "about": {
+    "title": "Câu chuyện của chúng mình",
+    "subtitle": "Lý do trang web này ra đời và hành trình lần đầu làm 'sen'",
+    "petProfile": "Lý lịch trích ngang",
+    "name": "Tên bé",
+    "breed": "Giống",
+    "gender": "Giới tính",
+    "birthday": "Ngày sinh",
+    "color": "Màu lông",
+    "personality": "Tính cách",
+    "funFacts": "Sự thật thú vị",
+    "credits": "Thiết kế & Lập trình bởi {author}."
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi. Vui lòng thử lại.",
+    "success": "Thành công!",
+    "save": "Lưu thay đổi",
+    "cancel": "Hủy bỏ",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "add": "Thêm mới",
+    "back": "Quay lại",
+    "backToHome": "Về trang chủ",
+    "noData": "Chưa có dữ liệu."
+  },
+  "admin": {
+    "dashboard": "Bảng điều khiển",
+    "login": "Đăng nhập admin",
+    "loginDesc": "Nhập email của bạn để nhận mã Magic Link đăng nhập vào trang quản lý.",
+    "sendLink": "Gửi link đăng nhập",
+    "petInfo": "Thông tin bé mèo",
+    "manageJournal": "Quản lý nhật ký",
+    "manageGallery": "Quản lý thư viện",
+    "manageMilestones": "Quản lý cột mốc",
+    "manageHealth": "Quản lý sức khỏe"
+  }
+}

@@ -1,0 +1,197 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════════════════════════════
+// Pet Profile
+// ═══════════════════════════════════════
+model Pet {
+  id            String      @id @default(cuid())
+  name          String?     // Nullable as name might not be decided yet
+  nameEn        String?     
+  species       String      @default("cat")
+  breed         String?
+  color         String?
+  gender        String?     // male, female, unknown
+  birthday      DateTime?
+  adoptionDate  DateTime?
+  weight        Float?      // kg
+  personality   String[]    // e.g. ["playful", "curious", "lazy"]
+  avatarUrl     String?     // Cloudinary URL
+  coverUrl      String?     // Cloudinary URL
+  bio           String?     
+  bioEn         String?     
+  isActive      Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Relations
+  journalEntries JournalEntry[]
+  milestones     Milestone[]
+  galleryImages  GalleryImage[]
+  albums         Album[]
+  weightLogs     WeightLog[]
+  healthRecords  HealthRecord[]
+
+  @@map("pets")
+}
+
+// ═══════════════════════════════════════
+// Journal / Diary Entries
+// ═══════════════════════════════════════
+model JournalEntry {
+  id          String   @id @default(cuid())
+  petId       String
+  pet         Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  title       String
+  titleEn     String?
+  slug        String   @unique
+  content     String   // HTML rich text
+  contentEn   String?  
+  excerpt     String?
+  excerptEn   String?
+  coverImage  String?  // Cloudinary URL
+  category    String   @default("daily") // daily, milestone, health, funny, tips
+  tags        String[]
+  mood        String?  // happy, playful, sleepy, sick, curious
+  readingTime Int?     // minutes
+
+  isPublished Boolean  @default(false)
+  isDraft     Boolean  @default(true)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([petId])
+  @@index([slug])
+  @@index([category])
+  @@index([publishedAt])
+  @@map("journal_entries")
+}
+
+// ═══════════════════════════════════════
+// Milestones
+// ═══════════════════════════════════════
+model Milestone {
+  id            String    @id @default(cuid())
+  petId         String
+  pet           Pet       @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  title         String
+  titleEn       String?
+  description   String?
+  descriptionEn String?
+  category      String    // first-time, health, growth, social, fun
+  icon          String?   // Lucide icon name
+  imageUrl      String?   // Cloudinary URL
+  date          DateTime?
+  ageAtEvent    String?   // "2 months", "6 weeks"
+
+  isCompleted   Boolean   @default(false)
+  isPredefined  Boolean   @default(false) 
+  sortOrder     Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([petId])
+  @@index([category])
+  @@map("milestones")
+}
+
+// ═══════════════════════════════════════
+// Gallery
+// ═══════════════════════════════════════
+model Album {
+  id            String   @id @default(cuid())
+  petId         String
+  pet           Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  name          String
+  nameEn        String?
+  description   String?
+  descriptionEn String?
+  coverImage    String?  // Cloudinary URL
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  images        GalleryImage[]
+
+  @@index([petId])
+  @@map("albums")
+}
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  petId       String
+  pet         Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+  albumId     String?
+  album       Album?   @relation(fields: [albumId], references: [id], onDelete: SetNull)
+
+  url         String   // Cloudinary URL (images) or Supabase URL (videos)
+  publicId    String?  // Cloudinary public_id
+  type        String   @default("image") // image, video
+  caption     String?
+  captionEn   String?
+  width       Int?
+  height      Int?
+  size        Int?     // bytes
+  format      String?  // jpg, png, webp, mp4
+  isFavorite  Boolean  @default(false)
+  takenAt     DateTime? // Photo taken date
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([petId])
+  @@index([albumId])
+  @@index([type])
+  @@map("gallery_images")
+}
+
+// ═══════════════════════════════════════
+// Health & Growth Tracking
+// ═══════════════════════════════════════
+model WeightLog {
+  id        String   @id @default(cuid())
+  petId     String
+  pet       Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  weight    Float    // kg
+  date      DateTime
+  note      String?
+  createdAt DateTime @default(now())
+
+  @@index([petId])
+  @@index([date])
+  @@map("weight_logs")
+}
+
+model HealthRecord {
+  id            String   @id @default(cuid())
+  petId         String
+  pet           Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+
+  type          String   // vaccination, vet-visit, medication, grooming, surgery
+  title         String
+  titleEn       String?
+  description   String?
+  descriptionEn String?
+  date          DateTime
+  nextDate      DateTime? // booster/next appointment
+  vetName       String?
+  cost          Float?
+  documents     String[]  // Document URLs
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([petId])
+  @@index([type])
+  @@index([date])
+  @@map("health_records")
+}

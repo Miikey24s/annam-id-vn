@@ -1,0 +1,13 @@
+services:
+  paw-app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: paw-app
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3000"
+    env_file:
+      - ../.env
+    environment:
+      - NODE_ENV=production
