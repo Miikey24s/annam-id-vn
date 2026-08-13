@@ -5,9 +5,9 @@ import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 
 const navItems = [
-  { href: "/projects", vi: "Work", en: "Work" },
+  { href: "/projects", vi: "Dự án", en: "Work" },
   { href: "/now", vi: "Đang làm", en: "Now" },
-  { href: "/blog", vi: "Notes", en: "Notes" },
+  { href: "/blog", vi: "Ghi chú", en: "Notes" },
   { href: "/about", vi: "Về mình", en: "About" },
 ] as const;
 
