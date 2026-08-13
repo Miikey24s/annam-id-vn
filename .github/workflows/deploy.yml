@@ -15,7 +15,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,22 +52,29 @@ jobs:
           push: true
           tags: ghcr.io/miikey24s/paw-annam-id-vn:latest
 
-      - name: Deploy to server
+      - name: Deploy main app to server
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -eu
             cd /opt/annam-id-vn
-            git pull origin master
-            docker compose -f docker/docker-compose.yml pull
-            docker compose -f docker/docker-compose.yml up -d --remove-orphans
-            docker exec annam-nginx nginx -s reload
+            git pull --ff-only origin master
+            docker compose -f docker/docker-compose.yml up -d --build --no-deps app
+            if docker ps --format '{{.Names}}' | grep -Fxq annam-nginx; then
+              docker exec annam-nginx nginx -s reload
+            fi
             docker image prune -f
             echo "Deployment complete at $(date)"
 
       - name: Health check
         run: |
-          sleep 10
-          curl -f https://annam.id.vn/api/health || echo "Health check pending - DNS may not be configured yet"
+          for attempt in 1 2 3 4 5 6; do
+            if curl -fsS https://annam.id.vn/api/health; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
