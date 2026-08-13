@@ -55,8 +55,8 @@ export const projects: readonly Project[] = [
       en: "An enterprise office-supplies system for requests, approvals, catalog and pricing, permissions, and operational summaries.",
     },
     kind: "enterprise",
-    status: "featured",
-    year: "2026",
+    status: "active",
+    year: "2026—now",
     role: { vi: "Đồ án luận văn và phát triển full-stack", en: "Graduation-thesis project and full-stack development" },
     stack: [".NET 10", "ASP.NET Core", "Blazor Server", "EF Core", "SQL Server", "Radzen", "Docker"],
     accent: "orange",
@@ -84,8 +84,8 @@ export const projects: readonly Project[] = [
       en: "Separate an ASP.NET Core backend, Blazor Server frontend, shared DTOs, test suite, Docker Compose, and operations documentation in one repository.",
     },
     outcome: {
-      vi: "Bằng chứng public gồm source code, bộ kiểm thử, sơ đồ kiến trúc và ảnh giao diện thuộc luận văn; nội dung nội bộ không được đưa lên portfolio.",
-      en: "Public evidence includes source code, tests, architecture diagrams, and thesis screenshots; internal operational data is excluded from this portfolio.",
+      vi: "GTAS VPP đang tiếp tục phát triển. Bằng chứng public hiện có gồm source code, bộ kiểm thử, sơ đồ kiến trúc và ảnh giao diện thuộc luận văn; nội dung nội bộ không được đưa lên portfolio.",
+      en: "GTAS VPP remains in active development. Current public evidence includes source code, tests, architecture diagrams, and thesis screenshots; internal operational data is excluded from this portfolio.",
     },
     learning: {
       vi: "Hệ thống vận hành cần mô hình hóa vai trò, trạng thái và điểm kiểm tra rõ ràng trước khi tối ưu giao diện.",
@@ -116,8 +116,8 @@ export const projects: readonly Project[] = [
       en: "Build an app shell, domain models, Firebase boundary, camera barcode/QR flow, OCR capture flow, and a no-connection state.",
     },
     outcome: {
-      vi: "Repository public có scaffold độc lập và widget test; Firebase runtime values và OCR endpoint thật vẫn là cấu hình cần hoàn thiện.",
-      en: "The public repository contains an independent scaffold and widget tests; Firebase runtime values and a real OCR endpoint remain configuration work.",
+      vi: "Chưa phải sản phẩm hoàn thiện. Repository public có scaffold độc lập, các màn hình nền tảng và widget test; Firebase runtime values, OCR endpoint thật và kiểm thử thiết bị vẫn là phần cần hoàn thiện.",
+      en: "This is not a finished product. The public repository contains an independent scaffold, core screens, and widget tests; Firebase runtime values, a real OCR endpoint, and device testing remain unfinished work.",
     },
     learning: {
       vi: "Tách ranh giới cấu hình cloud và OCR giúp prototype tiến triển mà không hard-code credential vào ứng dụng.",
@@ -133,8 +133,8 @@ export const projects: readonly Project[] = [
       en: "A full-stack BI platform for data upload, drag-and-drop dashboards, aggregated queries, and PDF/PNG report export.",
     },
     kind: "dashboard",
-    status: "archived",
-    year: "2025",
+    status: "lab",
+    year: "2025—2026",
     role: { vi: "Phát triển full-stack", en: "Full-stack development" },
     stack: ["Next.js", "React", "NestJS", "TypeORM", "MySQL", "ECharts", "Docker Compose"],
     accent: "yellow",
@@ -148,8 +148,8 @@ export const projects: readonly Project[] = [
       en: "Combine Excel/CSV upload, column detection, a query engine, drag-and-drop report builder, JWT authentication, and Docker Compose.",
     },
     outcome: {
-      vi: "Repository public mô tả tám loại biểu đồ, export PDF/PNG, report templates và kiến trúc Next.js + NestJS + MySQL.",
-      en: "The public repository documents eight chart types, PDF/PNG export, report templates, and a Next.js + NestJS + MySQL architecture.",
+      vi: "Chưa có bằng chứng public cho một bản phát hành hoàn thiện. Repository là snapshot phát triển local, có source frontend/backend, Docker Compose, e2e test backend và mô tả tám loại biểu đồ cùng export PDF/PNG.",
+      en: "There is no public evidence of a finished release. The repository is a local-development snapshot with frontend/backend source, Docker Compose, backend e2e tests, and documented eight-chart PDF/PNG export capabilities.",
     },
     learning: {
       vi: "Dashboard có ích khi luồng từ dữ liệu đến quyết định được ưu tiên hơn số lượng widget.",
