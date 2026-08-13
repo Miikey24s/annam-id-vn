@@ -41,9 +41,9 @@ export type Note = {
 
 export const capabilities: readonly LocalizedText[] = [
   { vi: "Hệ thống nghiệp vụ", en: "Business systems" },
-  { vi: "Dashboard dữ liệu", en: "Data dashboards" },
-  { vi: "Luồng mobile", en: "Mobile workflows" },
-  { vi: "Tool và thử nghiệm", en: "Tools and experiments" },
+  { vi: "Data dashboard", en: "Data dashboards" },
+  { vi: "Ứng dụng mobile", en: "Mobile applications" },
+  { vi: "Tools, game & experiments", en: "Tools, games & experiments" },
 ];
 
 export const projects: readonly Project[] = [

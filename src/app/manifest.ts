@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Annam Nguyen — Builder portfolio",
-    short_name: "ANNAM",
-    description: "Build useful systems. Learn in public. Keep shipping.",
+    name: "MIIKEY — Developer portfolio",
+    short_name: "MIIKEY",
+    description: "Software, tools, games, and experiments on an open route.",
     start_url: "/",
     display: "standalone",
     background_color: "#fff8f0",

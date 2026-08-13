@@ -5,10 +5,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://annam.id.vn"),
-  title: { default: "Annam Nguyen — Builder portfolio", template: "%s — Annam Nguyen" },
-  description: "Portfolio sống của Annam Nguyen — xây hệ thống, dashboard, mobile workflow và những thử nghiệm nhỏ.",
-  keywords: ["Annam Nguyen", "developer portfolio", ".NET", "Blazor", "product engineering"],
-  openGraph: { type: "website", siteName: "Annam Nguyen", title: "Annam Nguyen — Builder portfolio", description: "Build useful systems. Learn in public. Keep shipping.", url: "https://annam.id.vn" },
+  title: { default: "MIIKEY — Developer portfolio", template: "%s — MIIKEY" },
+  description: "Portfolio cá nhân của MIIKEY — software, tools, game và các experiment đang phát triển.",
+  keywords: ["MIIKEY", "Annam Nguyen", "developer portfolio", ".NET", "Blazor", "Unity", "game development"],
+  openGraph: { type: "website", siteName: "MIIKEY", title: "MIIKEY — Developer portfolio", description: "Software, tools, games, and experiments on an open route.", url: "https://annam.id.vn" },
   robots: { index: true, follow: true },
 };
 
