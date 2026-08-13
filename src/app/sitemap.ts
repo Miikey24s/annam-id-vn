@@ -1,46 +1,12 @@
 import type { MetadataRoute } from "next";
+import { notes, projects } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://annam.id.vn";
-  const locales = ["vi", "en"];
-  const lastModified = new Date();
-
-  const pages = ["", "/about", "/projects", "/blog", "/contact"];
-
-  const blogSlugs = [
-    "building-portfolio-nextjs",
-    "typescript-must-have",
-    "docker-frontend",
-    "cicd-github-actions",
+  const routes = ["", "/about", "/projects", "/now", "/blog", "/contact"];
+  return [
+    ...["vi", "en"].flatMap((locale) => routes.map((route) => ({ url: `${baseUrl}${locale === "vi" ? "" : `/${locale}`}${route}`, lastModified: new Date(), changeFrequency: route === "/now" ? "weekly" as const : "monthly" as const, priority: route === "" ? 1 : .7 }))),
+    ...projects.map((project) => ({ url: `${baseUrl}/projects/${project.slug}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: project.featured ? .8 : .5 })),
+    ...notes.map((note) => ({ url: `${baseUrl}/blog/${note.slug}`, lastModified: new Date(note.date), changeFrequency: "yearly" as const, priority: .5 })),
   ];
-
-  const entries: MetadataRoute.Sitemap = [];
-
-  // Static pages
-  for (const page of pages) {
-    for (const locale of locales) {
-      const url = locale === "vi" ? `${baseUrl}${page}` : `${baseUrl}/${locale}${page}`;
-      entries.push({
-        url,
-        lastModified,
-        changeFrequency: page === "" ? "weekly" : "monthly",
-        priority: page === "" ? 1.0 : 0.8,
-      });
-    }
-  }
-
-  // Blog posts
-  for (const slug of blogSlugs) {
-    for (const locale of locales) {
-      const url = locale === "vi" ? `${baseUrl}/blog/${slug}` : `${baseUrl}/${locale}/blog/${slug}`;
-      entries.push({
-        url,
-        lastModified,
-        changeFrequency: "monthly",
-        priority: 0.6,
-      });
-    }
-  }
-
-  return entries;
 }

@@ -2,31 +2,13 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Annam Nguyen | Developer Portfolio",
+    name: "Annam Nguyen — Builder portfolio",
     short_name: "ANNAM",
-    description: "Personal developer portfolio of Annam Nguyen",
+    description: "Build useful systems. Learn in public. Keep shipping.",
     start_url: "/",
     display: "standalone",
-    background_color: "#FDF8F4",
-    theme_color: "#E8913A",
+    background_color: "#fff8f0",
+    theme_color: "#ff6b35",
     orientation: "portrait-primary",
-    icons: [
-      {
-        src: "/icons/icon-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "/icons/icon-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
-      {
-        src: "/icons/icon-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "maskable",
-      },
-    ],
   };
 }

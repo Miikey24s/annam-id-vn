@@ -1,149 +1,51 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import ThemeToggle from "@/components/ui/ThemeToggle";
-import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
-import MobileNav from "@/components/layout/MobileNav";
+import { Link, usePathname } from "@/i18n/navigation";
 
-const NAV_ITEMS = [
-  { href: "/", key: "home" },
-  { href: "/about", key: "about" },
-  { href: "/projects", key: "projects" },
-  { href: "/blog", key: "blog" },
-  { href: "/contact", key: "contact" },
+const navItems = [
+  { href: "/projects", vi: "Work", en: "Work" },
+  { href: "/now", vi: "Đang làm", en: "Now" },
+  { href: "/blog", vi: "Notes", en: "Notes" },
+  { href: "/about", vi: "Về mình", en: "About" },
 ] as const;
 
-export default function Header() {
-  const t = useTranslations("nav");
+export default function Header({ locale }: { locale: string }) {
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    setScrolled(latest > 20);
-    if (latest > 150 && latest > previous) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
-
-  const isActive = useCallback(
-    (href: string) => {
-      if (href === "/") return pathname === "/";
-      return pathname.startsWith(href);
-    },
-    [pathname]
-  );
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
+  const isEnglish = locale === "en";
+  const label = (item: (typeof navItems)[number]) => (isEnglish ? item.en : item.vi);
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <>
-      <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 glass transition-shadow duration-300 ${
-          scrolled ? "shadow-lg shadow-black/5" : ""
-        }`}
-        initial={{ y: 0 }}
-        animate={{ y: hidden ? -100 : 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      >
-        <nav
-          className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
-          aria-label="Main navigation"
-        >
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="text-xl font-bold tracking-tight gradient-text
-                         hover:opacity-80 transition-opacity duration-200"
-            >
-              ANNAM
+    <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-paper/95 backdrop-blur">
+      <div className="container-page flex min-h-[78px] items-center justify-between gap-6">
+        <Link href="/" className="group flex items-center gap-3 no-underline" onClick={() => setOpen(false)}>
+          <span className="flex h-11 w-11 items-center justify-center border-[3px] border-ink bg-orange text-lg font-extrabold shadow-[4px_4px_0_var(--color-ink)] transition-transform group-hover:-rotate-6">A</span>
+          <span className="leading-none"><strong className="block text-xl font-extrabold tracking-tight">ANNAM<span className="text-orange">.</span></strong><span className="mono-label text-[.62rem]">build / learn / ship</span></span>
+        </Link>
+
+        <nav className="hidden items-center gap-2 md:flex" aria-label={isEnglish ? "Main navigation" : "Điều hướng chính"}>
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href} className={`rounded-lg border-2 border-transparent px-3 py-2 text-sm font-bold transition-colors hover:border-ink hover:bg-yellow ${isActive(item.href) ? "border-ink bg-lilac" : ""}`}>
+              {label(item)}
             </Link>
-
-            {/* Desktop Nav */}
-            <ul className="hidden md:flex items-center gap-1">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200
-                      ${
-                        isActive(item.href)
-                          ? "text-primary"
-                          : "text-text-secondary hover:text-text hover:bg-surface-alt"
-                      }`}
-                  >
-                    {t(item.key)}
-                    {isActive(item.href) && (
-                      <motion.span
-                        layoutId="activeNav"
-                        className="absolute inset-x-1 -bottom-px h-0.5 bg-primary rounded-full"
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Right side actions */}
-            <div className="flex items-center gap-2">
-              <div className="hidden md:flex items-center gap-2">
-                <LanguageSwitcher />
-                <ThemeToggle />
-              </div>
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden relative h-9 w-9 rounded-lg flex items-center justify-center
-                           text-text hover:bg-surface-alt transition-colors duration-200
-                           focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={mobileMenuOpen}
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </button>
-            </div>
-          </div>
+          ))}
+          <Link href="/contact" className="neo-button neo-button-orange ml-2 min-h-0 px-4 py-2 text-sm">{isEnglish ? "Contact" : "Liên hệ"}</Link>
         </nav>
-      </motion.header>
 
-      {/* Spacer to prevent content from going under fixed header */}
-      <div className="h-16" aria-hidden="true" />
+        <button type="button" className="neo-button neo-button-yellow min-h-0 p-2 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div>
 
-      {/* Mobile Navigation */}
-      <MobileNav
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
-    </>
+      {open && <div className="container-page pb-5 md:hidden">
+        <nav className="neo-card-sm grid gap-2 bg-cream p-3" aria-label={isEnglish ? "Mobile navigation" : "Điều hướng mobile"}>
+          {navItems.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className={`rounded-lg px-3 py-3 font-bold ${isActive(item.href) ? "bg-lilac" : "hover:bg-yellow"}`}>{label(item)}</Link>)}
+          <Link href="/contact" onClick={() => setOpen(false)} className="neo-button neo-button-orange mt-1">{isEnglish ? "Contact me" : "Liên hệ mình"}</Link>
+        </nav>
+      </div>}
+    </header>
   );
 }

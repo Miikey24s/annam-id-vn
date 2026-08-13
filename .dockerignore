@@ -1,0 +1,10 @@
+.git
+.github
+node_modules
+.next
+paw-annam-id-vn
+*.log
+.env*
+README.md
+AGENTS.md
+CLAUDE.md
