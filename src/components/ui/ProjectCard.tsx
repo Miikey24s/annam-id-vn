@@ -23,7 +23,7 @@ export default function ProjectCard({ project, locale, featured = false }: { pro
       </div>
       <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
         <div><div className="mb-5 flex items-start justify-between gap-4"><span className="mono-label">{project.year}</span><span className="max-w-[65%] text-right text-xs font-bold">{copy(project.role, locale)}</span></div><h3 className="text-2xl font-extrabold leading-tight sm:text-3xl">{project.title}</h3><p className="mt-3 max-w-md leading-relaxed">{title}</p></div>
-        <div className="mt-8"><div className="flex flex-wrap gap-2">{project.stack.slice(0, 4).map((item) => <span key={item} className="rounded-md border-2 border-ink bg-cream px-2 py-1 font-mono text-[.68rem] font-semibold">{item}</span>)}</div><Link href={`/projects/${project.slug}`} className="mt-5 inline-flex items-center gap-2 font-extrabold underline decoration-2 underline-offset-4 group-hover:text-ink">{en ? "Open project" : "Xem dự án"} <ArrowUpRight size={18} /></Link></div>
+        <div className="mt-8"><div className="flex flex-wrap gap-2">{project.stack.slice(0, 4).map((item) => <span key={item} className="rounded-md border-2 border-ink bg-cream px-2 py-1 font-mono text-[.68rem] font-semibold">{item}</span>)}</div><Link href={`/projects/${project.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 font-extrabold underline decoration-2 underline-offset-4 group-hover:text-ink">{en ? "Open project" : "Xem dự án"} <ArrowUpRight size={18} /></Link></div>
       </div>
     </article>
   );
